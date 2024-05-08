@@ -1,0 +1,35 @@
+﻿@model Bce.Dnn.ViragCsokorModul.Models.Table_Flowers
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/desktopmodules/mvc/viragcsokormodul/Views/_ViewStart.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Table_Flowers</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FlowerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FlowerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.FlowerID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
