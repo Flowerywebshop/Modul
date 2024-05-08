@@ -1,0 +1,15 @@
+# Generált forrásfájlok
+**/bin/
+**/obj/
+
+# Fordítás eredménye
+bin/
+obj/
+
+# Harmadik féltől származó, csomagkezelő segítségével telepített csomagok
+packages/
+node_modules/
+
+# Ideiglenes könyvtárak tartalma
+logs/
+temp/
