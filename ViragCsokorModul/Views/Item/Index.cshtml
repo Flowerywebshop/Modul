@@ -1,0 +1,314 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Bce.Dnn.ViragCsokorModul.Models.Item>>
+
+@using System.Text.RegularExpressions
+@using DotNetNuke.Web.Mvc.Helpers
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Csokorkészítő felület</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        div.text-center {
+            font-family: Arial, sans-serif;
+            margin-bottom: 40px;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+            .image-options img {
+                width: 150px;
+                margin: 10px;
+                cursor: pointer;
+                transition: transform 0.3s ease-in-out;
+                border-radius: 8px;
+            }
+
+                .image-options img:hover {
+                    transform: scale(1.1);
+                }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ccc;
+            margin: 40px 0;
+        }
+
+        .selected-image {
+            border: 2px solid #70bb8b;
+        }
+
+        .cab-thumbnail {
+            float: left;
+            margin-right: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+            .cab-thumbnail img {
+                width: 200px;
+                height: 200px;
+                object-fit: cover;
+            }
+
+        .cab-thumb-flower-name {
+            background-color: #70bb8b;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        #select-options {
+            font-size: 16px;
+            border-color: transparent;
+            padding: 2px 2px 2px 2px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+            #select-options ::selection {
+                background: #70bb8b;
+                color: #fff;
+                text-shadow: none;
+                border: none;
+            }
+
+        ::selection {
+            background: #70bb8b;
+            color: #fff;
+            text-shadow: none;
+            border: none;
+        }
+
+        /* Custom select dropdown styles */
+        .custom-select {
+            display: inline-block;
+            padding: 12px 24px; /* increased padding for bigger size */
+            border: 1px solid #ccc;
+            border-radius: 8px; /* increased border-radius for rounded corners */
+            user-select: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
+            background-color: #fff; /* added background color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .select-selected {
+            display: inline-block;
+            padding: 12px 24px; /* increased padding for bigger size */
+            border: 1px solid #ccc;
+            border-radius: 8px; /* increased border-radius for rounded corners */
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
+            background-color: #fff; /* added background color */
+        }
+
+            .select-selected:hover {
+                background-color: #e9e9e9;
+            }
+
+        .select-items {
+            position: absolute;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-radius: 0 0 8px 8px; /* increased border-radius */
+            z-index: 99;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
+        }
+
+            .select-items div {
+                padding: 12px 24px; /* increased padding */
+                cursor: pointer;
+                user-select: none;
+            }
+
+                .select-items div:hover {
+                    background-color: #e9e9e9;
+                }
+
+
+        .checkout-button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 18px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition-duration: 0.4s;
+            margin-top: 40px;
+        }
+
+            /* Add hover effect */
+            .checkout-button:hover {
+                background-color: #45a049; /* Darker green */
+            }
+
+            /* Add a bit of shadow for depth */
+            .checkout-button:active {
+                box-shadow: 0 5px #666;
+                transform: translateY(4px);
+            }
+
+        .disabled-button {
+            background-color: #C8E6C9 !important; /* Lighter green */
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tab-content options">
+        <div class="custom-tab active" id="presentation-option">
+            <h2 class="title text-center optionsHeader-sm">Milyen csomagolásban érkezzen az összeállítása?</h2>
+            <div class="text-center optionsHint">
+                <p>Válassza ki a csomagolás típusát!</p>
+            </div>
+            <div class="image-options">
+                <img src="https://d145lal0wx50bl.cloudfront.net/assets/user/bouquet/bouquet-0d9e490ff3c6e0b5b6dab957fc01b077d2ff6c7b8ffe902cb82baac45f0255ba.png" alt="Csokor" onclick="selectOption(this)">
+                <img src="https://d145lal0wx50bl.cloudfront.net/assets/user/bouquet/boxed-9037c39ad1d5f8d0083a4c1952d46814052da068e29e226c0ad62ac76a486a8e.png" alt="Doboz" onclick="selectOption(this)">
+            </div>
+            <hr class="default-line">
+            <h2>Milyen virágtípusokat szeretne?</h2>
+            <p>Segítünk a választásban!</p>
+            <div class="image-options">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1614936770/pynroaa4x7wh9ut5ko4g.jpg" alt="Roses" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053450/zdyu9un15t8bobnckk2v.jpg" alt="Oriental Lilies" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053626/edsf6xurhpozxtsnuiht.jpg" " alt="Gerberas" onclick="selectOption(this)">
+            </div>
+            <hr class="default-line">
+            <h2>Válassza ki a csomagolás színét!</h2>
+            <div class="image-options">
+                <div class="custom-select">
+                    <select id="select-options">
+                        <option value="Átlátszó">Átlátszó</option>
+                        <option value="Natúr">Natúr</option>
+                        <option value="Virágmintás">Virágmintás</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <hr class="default-line">
+        <h2>Válassza ki a virágok színárnyalatát!</h2>
+        <div class="image-options">
+            <div class="custom-select">
+                <select id="select-options">
+                    <option value="Kék">Kevert pasztell színek</option>
+                    <option value="Natúr">Kevert élénk színek</option>
+                    <option value="Virágmintás">Rózsaszín árnyalat</option>
+                    <option value="Virágmintás">Fehér-sárga kombináció</option>
+                    <option value="Virágmintás">Kék-lila kombináció</option>
+
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="image-options">
+        <button class="checkout-button">Kosár</button>
+    </div>
+
+
+
+    <script>
+        var selectedOptions = {
+            packaging: null,
+            flowers: []
+        };
+
+        function selectOption(option) {
+            var optionType = option.alt;
+
+            if (optionType === 'Csokor' || optionType === 'Doboz') {
+                selectedOptions.packaging = optionType;
+                updateSelection();
+            } else {
+                var index = selectedOptions.flowers.indexOf(optionType);
+                if (index === -1 && selectedOptions.flowers.length < 3) {
+                    selectedOptions.flowers.push(optionType);
+                } else if (index !== -1) {
+                    selectedOptions.flowers.splice(index, 1);
+                }
+
+                updateSelection();
+            }
+        }
+
+        function updateSelection() {
+            var options = document.querySelectorAll('.image-options img');
+            options.forEach(function (option) {
+                if (option.alt === selectedOptions.packaging || selectedOptions.flowers.includes(option.alt)) {
+                    option.classList.add('selected-image');
+                } else {
+                    option.classList.remove('selected-image');
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            // Handle button click
+            $('.checkout-button').click(function (e) {
+                e.preventDefault(); // Prevent the form from submitting
+
+                // Show custom pop-up notification
+                $('#custom-alert').fadeIn();
+            });
+
+            // Handle OK button click
+            $('#custom-alert-ok').click(function () {
+                $('#custom-alert').fadeOut();
+            });
+        });
+
+
+
+
+
+    </script>
+
+    <!-- Custom alert box -->
+    <div id="custom-alert" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #ffffff; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); width: 80%; max-width: 600px; text-align: center;">
+        <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
+        <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Tovább a fizetéshez</button>
+    </div>
+
+</body>
+</html>
+
