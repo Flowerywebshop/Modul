@@ -297,14 +297,14 @@
             });
 
             // Handle OK button click
-            $(document).ready(function () {
+            /*$(document).ready(function () {
                 // Handle button click
                 $('#custom-alert-ok').click(function () {
-                    // Redirect to the "Kosar" page
-                    var kosarUrl = '<%= Url.Action("Index", "Kosar") %>';
-                    window.location.href = "http://www.dnndev.me/Kosar";
+                    // Get the URL of the "Kosar" page
+                    var kosarUrl = '<%= DotNetNuke.Common.Globals.NavigateURL(PortalSettings.ActiveTab.TabID, "", "") %>';
+                    window.location.href = kosarUrl;
                 });
-            });
+            });*/
             
         });
 
@@ -319,6 +319,18 @@
         <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
         <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Tovább a fizetéshez</button>
     </div>
-    
+    <script>
+        $(document).ready(function () {
+            // Handle button click
+            $('#custom-alert-ok').click(function () {
+                // Define the TabID of the "Kosar" page
+                var kosarTabId = INSERT_KOSAR_TAB_ID_HERE;
+
+                // Construct the URL of the "Kosar" page using the TabID
+                var kosarUrl = '<%= DotNetNuke.Common.Globals.NavigateURL(kosarTabId) %>';
+                window.location.href = kosarUrl;
+            });
+        });
+    </script>
 </body >
 </html >
