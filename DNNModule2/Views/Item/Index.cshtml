@@ -297,9 +297,15 @@
             });
 
             // Handle OK button click
-            $('#custom-alert-ok').click(function () {
-                $('#custom-alert').fadeOut();
+            $(document).ready(function () {
+                // Handle button click
+                $('#custom-alert-ok').click(function () {
+                    // Redirect to the "Kosar" page
+                    var kosarUrl = '<%= Url.Action("Index", "Kosar") %>';
+                    window.location.href = "http://www.dnndev.me/Kosar";
+                });
             });
+            
         });
 
 
@@ -313,6 +319,6 @@
         <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
         <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Tovább a fizetéshez</button>
     </div>
-
-</body>
-</html>
+    
+</body >
+</html >
