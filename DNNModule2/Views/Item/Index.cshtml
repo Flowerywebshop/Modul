@@ -250,7 +250,11 @@
         <button class="checkout-button">Kosár</button>
     </div>
 
-
+    <!-- Custom alert box -->
+    <div id="custom-alert" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #ffffff; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); width: 80%; max-width: 600px; text-align: center;">
+        <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
+        <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Tovább a fizetéshez</button>
+    </div>
 
     <script>
         var selectedOptions = {
@@ -305,21 +309,14 @@
                     window.location.href = kosarUrl;
                 });
             });*/
-            
+
         });
 
 
 
 
 
-    </script>
-
-    <!-- Custom alert box -->
-    <div id="custom-alert" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #ffffff; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); width: 80%; max-width: 600px; text-align: center;">
-        <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
-        <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Tovább a fizetéshez</button>
-    </div>
-    <script>
+    
         $(document).ready(function () {
             // Handle button click
             $('#custom-alert-ok').click(function () {
@@ -334,5 +331,5 @@
             });
         });
     </script>
-</body >
+</body>
 </html >
