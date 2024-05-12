@@ -118,6 +118,7 @@
     <Compile Include="Components\ItemManager.cs" />
     <Compile Include="Controllers\FlowersController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
+    <Compile Include="Models\Flowers.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Models\Model1.Context.cs">
