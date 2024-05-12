@@ -36,10 +36,23 @@ ALTER TABLE {databaseOwner}{objectQualifier}DNNModule2_Items ADD CONSTRAINT
 
 GO
 
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Ordera') AND type in (N'U'))
-DROP TABLE {databaseOwner}{objectQualifier}TestFlightParticipants
-GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Order') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}Order
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Flowers') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}Flowers
+
+CREATE TABLE {databaseOwner}{objectQualifier}Flowers
+    (
+        [FlowerID] INT NOT NULL IDENTITY (1, 1)
+                CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED,
+
+       [FlowerName] NVARCHAR(1024),
+       [Price] DECIMAL
+        
+    )  ON [PRIMARY]
+    TEXTIMAGE_ON [PRIMARY]
+GO
 
 CREATE TABLE {databaseOwner}{objectQualifier}Order
     (
@@ -50,7 +63,7 @@ CREATE TABLE {databaseOwner}{objectQualifier}Order
         [FlowerID] INT NOT NULL,
         [PackageColorID] INT NOT NULL,
         [FlowerColorID] INT NOT NULL,
-        [TotalPrice] DECIMAL NOT NULL,
+        [TotalPrice] DECIMAL NOT NULL
         
     )  ON [PRIMARY]
     TEXTIMAGE_ON [PRIMARY]
