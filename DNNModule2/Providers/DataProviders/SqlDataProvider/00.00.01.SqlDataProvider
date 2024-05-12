@@ -36,6 +36,30 @@ ALTER TABLE {databaseOwner}{objectQualifier}DNNModule2_Items ADD CONSTRAINT
 
 GO
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Ordera') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}TestFlightParticipants
+GO
+
+
+CREATE TABLE {databaseOwner}{objectQualifier}Order
+    (
+        [OrderID] INT NOT NULL IDENTITY (1, 1)
+                CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED,
+
+        [PackagingID] INT NOT NULL,
+        [FlowerID] INT NOT NULL,
+        [PackageColorID] INT NOT NULL,
+        [FlowerColorID] INT NOT NULL,
+        [TotalPrice] DECIMAL NOT NULL,
+        
+    )  ON [PRIMARY]
+    TEXTIMAGE_ON [PRIMARY]
+GO
+
+
+
+
+
 
 /************************************************************/
 /*****              SqlDataProvider                     *****/
