@@ -212,12 +212,12 @@
             <div class="image-options">
                 <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1614936770/pynroaa4x7wh9ut5ko4g.jpg" alt="Roses" onclick="selectOption(this)">
                 <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053450/zdyu9un15t8bobnckk2v.jpg" alt="Oriental Lilies" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053626/edsf6xurhpozxtsnuiht.jpg" " alt="Gerberas" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053626/edsf6xurhpozxtsnuiht.jpg" alt="Gerberas" onclick="selectOption(this)">
             </div>
             <div class="image-options">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615792963/gjumxhthhn0sspx1wqrj.jpg" " alt="Chrysanthemums" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053538/pc4uxotigenqthccvcju.jpg" " alt="Sweet Williams" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615793476/jimolwia458vooi05ozv.jpg" " alt="Sunflowers" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615792963/gjumxhthhn0sspx1wqrj.jpg" alt="Chrysanthemums" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053538/pc4uxotigenqthccvcju.jpg" alt="Sweet Williams" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615793476/jimolwia458vooi05ozv.jpg" alt="Sunflowers" onclick="selectOption(this)">
             </div>
             <hr class="default-line">
             <h2>Válassza ki a csomagolás színét!</h2>
@@ -250,11 +250,13 @@
         <button class="checkout-button">Kosár</button>
     </div>
 
-    <!-- Custom alert box -->
+
     <div id="custom-alert" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #ffffff; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); width: 80%; max-width: 600px; text-align: center;">
         <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
         <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Tovább a fizetéshez</button>
     </div>
+
+    <div id="bubble" style="position: absolute; display: none; background-color: #ff6666; color: #fff; padding: 5px 10px; border-radius: 5px;">Legfeljebb 3 virágot választhat!</div>
 
     <script>
         var selectedOptions = {
@@ -292,28 +294,28 @@
         }
 
         $(document).ready(function () {
-            // Handle button click
-            $('.checkout-button').click(function (e) {
-                e.preventDefault(); // Prevent the form from submitting
 
-                // Show custom pop-up notification
+            $('.checkout-button').click(function (e) {
+                e.preventDefault();
+
+
                 $('#custom-alert').fadeIn();
             });
-                        
+
 
         });
 
-    
-        $(document).ready(function () {
-            // Handle button click
+
+        /*$(document).ready(function () {
+
             $('#custom-alert-ok').click(function () {
-                // Define the TabID of the "Kosar" page
+
                 var kosarTabId = 35;
 
-                // Construct the URL of the "Kosar" page using the TabID
+
                 var kosarUrl = '<%= DotNetNuke.Common.Globals.NavigateURL(kosarTabId) %>';
 
-                // Redirect to the "Kosar" page
+
                 window.location.href = kosarUrl;
             });
         });
