@@ -318,7 +318,22 @@
 
                 window.location.href = kosarUrl;
             });
-        });
+        });*/
+
+
+
+        function showBubble(event) {
+            var bubble = document.getElementById('bubble');
+            if (selectedOptions.flowers.length >= 3 && event.target.tagName.toLowerCase() === 'img' && !selectedOptions.flowers.includes(event.target.alt)) {
+                bubble.style.display = 'block';
+                bubble.style.left = "75%";
+                bubble.style.top = "48%";
+            } else {
+                bubble.style.display = 'none';
+            }
+        }
+        document.addEventListener('click', showBubble);
+
     </script>
 </body>
 </html >
