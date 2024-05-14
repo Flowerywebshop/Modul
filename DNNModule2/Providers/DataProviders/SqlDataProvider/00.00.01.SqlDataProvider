@@ -54,6 +54,14 @@ CREATE TABLE {databaseOwner}{objectQualifier}Flowers
     
 GO
 
+ALTER TABLE {databaseOwner}{objectQualifier}Flowers ADD CONSTRAINT
+    PK_{objectQualifier}Flowers PRIMARY KEY CLUSTERED 
+    (
+    FlowerID
+    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
 CREATE TABLE {databaseOwner}{objectQualifier}Order
     (
         [OrderID] INT NOT NULL IDENTITY (1, 1)
@@ -67,6 +75,25 @@ CREATE TABLE {databaseOwner}{objectQualifier}Order
         
     )  ON [PRIMARY]
     
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Order ADD CONSTRAINT
+    PK_{objectQualifier}Order PRIMARY KEY CLUSTERED 
+    (
+    OrderID
+    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+INSERT INTO [Flowers] (
+	[FlowerName], [Price]
+	) VALUES
+	('Rózsa', 1000),
+	('Liliom', 900),
+	('Gerbera', 1100),
+	('Krizantém', 800),
+	('Török szegfű', 950),
+    ('Napraforgó', 1200);
 GO
 
 

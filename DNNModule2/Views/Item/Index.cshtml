@@ -110,27 +110,27 @@
             border: none;
         }
 
-        /* Custom select dropdown styles */
+        
         .custom-select {
             display: inline-block;
-            padding: 12px 24px; /* increased padding for bigger size */
+            padding: 12px 24px; 
             border: 1px solid #ccc;
-            border-radius: 8px; /* increased border-radius for rounded corners */
+            border-radius: 8px; 
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
-            background-color: #fff; /* added background color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            background-color: #fff; 
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .select-selected {
             display: inline-block;
-            padding: 12px 24px; /* increased padding for bigger size */
+            padding: 12px 24px; 
             border: 1px solid #ccc;
-            border-radius: 8px; /* increased border-radius for rounded corners */
+            border-radius: 8px; 
             cursor: pointer;
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
-            background-color: #fff; /* added background color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            background-color: #fff; 
         }
 
             .select-selected:hover {
@@ -142,16 +142,16 @@
             background-color: #f9f9f9;
             border: 1px solid #ccc;
             border-top: none;
-            border-radius: 0 0 8px 8px; /* increased border-radius */
+            border-radius: 0 0 8px 8px; 
             z-index: 99;
             display: none;
             max-height: 200px;
             overflow-y: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
         }
 
             .select-items div {
-                padding: 12px 24px; /* increased padding */
+                padding: 12px 24px;
                 cursor: pointer;
                 user-select: none;
             }
@@ -162,7 +162,7 @@
 
 
         .checkout-button {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50; 
             border: none;
             color: white;
             padding: 15px 32px;
@@ -177,19 +177,19 @@
             margin-top: 40px;
         }
 
-            /* Add hover effect */
+            
             .checkout-button:hover {
-                background-color: #45a049; /* Darker green */
+                background-color: #45a049;
             }
 
-            /* Add a bit of shadow for depth */
+            
             .checkout-button:active {
                 box-shadow: 0 5px #666;
                 transform: translateY(4px);
             }
 
         .disabled-button {
-            background-color: #C8E6C9 !important; /* Lighter green */
+            background-color: #C8E6C9 !important; 
             cursor: not-allowed;
         }
     </style>
@@ -247,13 +247,13 @@
         </div>
     </div>
     <div class="image-options">
-        <button class="checkout-button">Kosár</button>
+        <button class="checkout-button">Kosárba</button>
     </div>
 
-    <!-- Custom alert box -->
+    
     <div id="custom-alert" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #ffffff; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); width: 80%; max-width: 600px; text-align: center;">
         <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
-        <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">Tovább a fizetéshez</button>
+        <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">OK</button>
     </div>
 
     <script>
@@ -292,11 +292,11 @@
         }
 
         $(document).ready(function () {
-            // Handle button click
+            
             $('.checkout-button').click(function (e) {
-                e.preventDefault(); // Prevent the form from submitting
+                e.preventDefault(); 
 
-                // Show custom pop-up notification
+                
                 $('#custom-alert').fadeIn();
             });
                         
@@ -305,15 +305,15 @@
 
     
         $(document).ready(function () {
-            // Handle button click
+            
             $('#custom-alert-ok').click(function () {
-                // Define the TabID of the "Kosar" page
+                
                 var kosarTabId = 35;
 
-                // Construct the URL of the "Kosar" page using the TabID
+                
                 var kosarUrl = '<%= DotNetNuke.Common.Globals.NavigateURL(kosarTabId) %>';
 
-                // Redirect to the "Kosar" page
+                
                 window.location.href = kosarUrl;
             });
         });
