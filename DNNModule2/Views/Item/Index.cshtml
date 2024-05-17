@@ -1,8 +1,15 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Bce.Dnn.DNNModule2.Models.Item>>
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Bce.Dnn.DNNModule2.Models.Flowers>>
 
 @using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
 
+<div>
+    @foreach (var flower in Model)
+            {
+                <h2>@flower.FlowerName</h2>
+            }
+
+</div>
 
 <!DOCTYPE html>
 <html>

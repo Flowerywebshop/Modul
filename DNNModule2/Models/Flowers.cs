@@ -16,9 +16,9 @@ namespace Bce.Dnn.DNNModule2.Models
         {
             public int FlowerID { get; set; }
 
-            public string Name { get; set; }
+            public string FlowerName { get; set; }
 
-            public int Duration { get; set; }
+            public decimal Price { get; set; }
 
         }
     
