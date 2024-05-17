@@ -1,4 +1,4 @@
-﻿/************************************************************/
+﻿﻿/************************************************************/
 /*****              SqlDataProvider                     *****/
 /*****                                                  *****/
 /*****                                                  *****/
@@ -34,6 +34,62 @@ ALTER TABLE {databaseOwner}{objectQualifier}DNNModule2_Items ADD CONSTRAINT
     ItemId
     ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Order') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}Order
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Flowers') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}Flowers
+
+CREATE TABLE {databaseOwner}{objectQualifier}Flowers
+    (
+        [FlowerID] INT NOT NULL IDENTITY (1, 1),
+       [FlowerName] NVARCHAR(1024),
+       [Price] DECIMAL
+        
+    )  ON [PRIMARY]
+    
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Flowers ADD CONSTRAINT
+    PK_{objectQualifier}Flowers PRIMARY KEY CLUSTERED 
+    (
+    FlowerID
+    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+CREATE TABLE {databaseOwner}{objectQualifier}Order
+    (
+        [OrderID] INT NOT NULL IDENTITY (1, 1),
+                [PackagingID] INT NOT NULL,
+        [FlowerID] INT NOT NULL,
+        [PackageColorID] INT NOT NULL,
+        [FlowerColorID] INT NOT NULL,
+        [TotalPrice] DECIMAL NOT NULL
+        
+    )  ON [PRIMARY]
+    
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Order ADD CONSTRAINT
+    PK_{objectQualifier}Order PRIMARY KEY CLUSTERED 
+    (
+    OrderID
+    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+INSERT INTO [Flowers] (
+	[FlowerName], [Price]
+	) VALUES
+	('Rózsa', 1000),
+	('Liliom', 900),
+	('Gerbera', 1100),
+	('Krizantém', 800),
+	('Török szegfű', 950),
+    ('Napraforgó', 1200);
 GO
 
 

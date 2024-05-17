@@ -1,3 +1,9 @@
-﻿IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNModule2_Items]') AND type in (N'U'))
+﻿﻿IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}[{objectQualifier}DNNModule2_Items]') AND type in (N'U'))
 DROP TABLE {databaseOwner}[{objectQualifier}DNNModule2_Items]
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Order') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}Order
+GO
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Flowers') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}Flowers
 GO
