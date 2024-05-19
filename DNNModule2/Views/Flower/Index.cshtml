@@ -1,0 +1,14 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Bce.Dnn.DNNModule2.Models.Flowers>>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/desktopmodules/mvc/dnnmodule2/Views/Shared/_Layout.cshtml";
+}
+
+<div>
+    @foreach (var flower in Model)
+    {
+        <h2>@flower.FlowerName</h2>
+    }
+
+</div>
+

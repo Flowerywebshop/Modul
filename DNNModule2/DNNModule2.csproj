@@ -117,8 +117,10 @@
     <Compile Include="Components\FeatureController.cs" />
     <Compile Include="Components\FlowerManager.cs" />
     <Compile Include="Components\ItemManager.cs" />
+    <Compile Include="Components\PackagingManager.cs" />
     <Compile Include="Controllers\FlowerController.cs" />
     <Compile Include="Controllers\FlowersController.cs" />
+    <Compile Include="Controllers\PackagingController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Models\Flowers.cs" />
     <Compile Include="Models\Item.cs" />
@@ -138,6 +140,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Packaging.cs" />
     <Compile Include="Models\Settings.cs" />
     <Compile Include="Models\Table_FlowerColor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -221,6 +224,8 @@
     <Content Include="Views\Flowers\Details.cshtml" />
     <Content Include="Views\Flowers\Edit.cshtml" />
     <Content Include="Views\Flowers\Index.cshtml" />
+    <Content Include="Views\Flower\Index.cshtml" />
+    <Content Include="Views\Packaging\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -231,9 +236,7 @@
   <ItemGroup>
     <Content Include="App_LocalResources\Item.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Flower\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

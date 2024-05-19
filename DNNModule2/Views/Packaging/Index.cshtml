@@ -1,0 +1,15 @@
+﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Bce.Dnn.DNNModule2.Models.Packaging>>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/desktopmodules/mvc/dnnmodule2/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<div>
+    @foreach (var package in Model)
+    {
+        <h2>@package.PackagingName</h2>
+    }
+
+</div>

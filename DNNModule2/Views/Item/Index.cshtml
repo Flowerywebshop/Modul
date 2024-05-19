@@ -1,13 +1,13 @@
-﻿@inherits DotNetNuke.Web.Mvc.Framework.DnnWebViewPage<IEnumerable<Bce.Dnn.DNNModule2.Models.Flowers>>
-
-@using System.Text.RegularExpressions
+﻿@using System.Text.RegularExpressions
 @using DotNetNuke.Web.Mvc.Helpers
 
+
+
 <div>
-    @foreach (var flower in Model)
-            {
-                <h2>@flower.FlowerName</h2>
-            }
+    @foreach (var package in Model)
+    {
+        <h2>@package.PackagingName</h2>
+    }
 
 </div>
 
@@ -117,27 +117,27 @@
             border: none;
         }
 
-        
+
         .custom-select {
             display: inline-block;
-            padding: 12px 24px; 
+            padding: 12px 24px;
             border: 1px solid #ccc;
-            border-radius: 8px; 
+            border-radius: 8px;
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-            background-color: #fff; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .select-selected {
             display: inline-block;
-            padding: 12px 24px; 
+            padding: 12px 24px;
             border: 1px solid #ccc;
-            border-radius: 8px; 
+            border-radius: 8px;
             cursor: pointer;
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
-            background-color: #fff; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
         }
 
             .select-selected:hover {
@@ -149,12 +149,12 @@
             background-color: #f9f9f9;
             border: 1px solid #ccc;
             border-top: none;
-            border-radius: 0 0 8px 8px; 
+            border-radius: 0 0 8px 8px;
             z-index: 99;
             display: none;
             max-height: 200px;
             overflow-y: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
             .select-items div {
@@ -169,7 +169,7 @@
 
 
         .checkout-button {
-            background-color: #4CAF50; 
+            background-color: #4CAF50;
             border: none;
             color: white;
             padding: 15px 32px;
@@ -184,19 +184,19 @@
             margin-top: 40px;
         }
 
-            
+
             .checkout-button:hover {
                 background-color: #45a049;
             }
 
-            
+
             .checkout-button:active {
                 box-shadow: 0 5px #666;
                 transform: translateY(4px);
             }
 
         .disabled-button {
-            background-color: #C8E6C9 !important; 
+            background-color: #C8E6C9 !important;
             cursor: not-allowed;
         }
     </style>
@@ -257,7 +257,7 @@
         <button class="checkout-button">Kosárba</button>
     </div>
 
-    
+
     <div id="custom-alert" style="display: none; position: fixed; top: 10px; left: 50%; transform: translateX(-50%); background-color: #ffffff; padding: 20px; border: 1px solid #ccc; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); width: 80%; max-width: 600px; text-align: center;">
         <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
         <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">OK</button>
@@ -299,31 +299,31 @@
         }
 
         $(document).ready(function () {
-            
-            $('.checkout-button').click(function (e) {
-                e.preventDefault(); 
 
-                
+            $('.checkout-button').click(function (e) {
+                e.preventDefault();
+
+
                 $('#custom-alert').fadeIn();
             });
-                        
+
 
         });
 
-    
+
         $(document).ready(function () {
-            
+
             $('#custom-alert-ok').click(function () {
-                
+
                 var kosarTabId = 35;
 
-                
+
                 var kosarUrl = '<%= DotNetNuke.Common.Globals.NavigateURL(kosarTabId) %>';
 
-                
+
                 window.location.href = kosarUrl;
             });
         });
     </script>
 </body>
-</html >
+</html>
