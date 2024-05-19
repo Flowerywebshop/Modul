@@ -3,13 +3,7 @@
 
 
 
-<div>
-    @foreach (var package in Model)
-    {
-        <h2>@package.PackagingName</h2>
-    }
 
-</div>
 
 <!DOCTYPE html>
 <html>
@@ -117,27 +111,27 @@
             border: none;
         }
 
-
+        /* Custom select dropdown styles */
         .custom-select {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 12px 24px; /* increased padding for bigger size */
             border: 1px solid #ccc;
-            border-radius: 8px;
+            border-radius: 8px; /* increased border-radius for rounded corners */
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
+            background-color: #fff; /* added background color */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .select-selected {
             display: inline-block;
-            padding: 12px 24px;
+            padding: 12px 24px; /* increased padding for bigger size */
             border: 1px solid #ccc;
-            border-radius: 8px;
+            border-radius: 8px; /* increased border-radius for rounded corners */
             cursor: pointer;
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
+            background-color: #fff; /* added background color */
         }
 
             .select-selected:hover {
@@ -149,16 +143,16 @@
             background-color: #f9f9f9;
             border: 1px solid #ccc;
             border-top: none;
-            border-radius: 0 0 8px 8px;
+            border-radius: 0 0 8px 8px; /* increased border-radius */
             z-index: 99;
             display: none;
             max-height: 200px;
             overflow-y: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
         }
 
             .select-items div {
-                padding: 12px 24px;
+                padding: 12px 24px; /* increased padding */
                 cursor: pointer;
                 user-select: none;
             }
@@ -169,7 +163,7 @@
 
 
         .checkout-button {
-            background-color: #4CAF50;
+            background-color: #4CAF50; /* Green */
             border: none;
             color: white;
             padding: 15px 32px;
@@ -184,19 +178,19 @@
             margin-top: 40px;
         }
 
-
+            /* Add hover effect */
             .checkout-button:hover {
-                background-color: #45a049;
+                background-color: #45a049; /* Darker green */
             }
 
-
+            /* Add a bit of shadow for depth */
             .checkout-button:active {
                 box-shadow: 0 5px #666;
                 transform: translateY(4px);
             }
 
         .disabled-button {
-            background-color: #C8E6C9 !important;
+            background-color: #C8E6C9 !important; /* Lighter green */
             cursor: not-allowed;
         }
     </style>
@@ -219,12 +213,12 @@
             <div class="image-options">
                 <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1614936770/pynroaa4x7wh9ut5ko4g.jpg" alt="Roses" onclick="selectOption(this)">
                 <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053450/zdyu9un15t8bobnckk2v.jpg" alt="Oriental Lilies" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053626/edsf6xurhpozxtsnuiht.jpg" " alt="Gerberas" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053626/edsf6xurhpozxtsnuiht.jpg" alt="Gerberas" onclick="selectOption(this)">
             </div>
             <div class="image-options">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615792963/gjumxhthhn0sspx1wqrj.jpg" " alt="Chrysanthemums" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053538/pc4uxotigenqthccvcju.jpg" " alt="Sweet Williams" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615793476/jimolwia458vooi05ozv.jpg" " alt="Sunflowers" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615792963/gjumxhthhn0sspx1wqrj.jpg" alt="Chrysanthemums" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053538/pc4uxotigenqthccvcju.jpg" alt="Sweet Williams" onclick="selectOption(this)">
+                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615793476/jimolwia458vooi05ozv.jpg" alt="Sunflowers" onclick="selectOption(this)">
             </div>
             <hr class="default-line">
             <h2>Válassza ki a csomagolás színét!</h2>
@@ -254,7 +248,7 @@
         </div>
     </div>
     <div class="image-options">
-        <button class="checkout-button">Kosárba</button>
+        <button class="checkout-button">Kosár</button>
     </div>
 
 
@@ -262,6 +256,8 @@
         <p style="font-size: 24px;">Csokor kosárhoz adva!</p>
         <button id="custom-alert-ok" style="padding: 10px 20px; background-color: #4CAF50; color: #fff; border: none; border-radius: 8px; cursor: pointer;">OK</button>
     </div>
+
+    <div id="bubble" style="position: absolute; display: none; background-color: #ff6666; color: #fff; padding: 5px 10px; border-radius: 5px;">Legfeljebb 3 virágot választhat!</div>
 
     <script>
         var selectedOptions = {
@@ -311,7 +307,7 @@
         });
 
 
-        $(document).ready(function () {
+        /*$(document).ready(function () {
 
             $('#custom-alert-ok').click(function () {
 
@@ -323,7 +319,22 @@
 
                 window.location.href = kosarUrl;
             });
-        });
+        });*/
+
+
+
+        function showBubble(event) {
+            var bubble = document.getElementById('bubble');
+            if (selectedOptions.flowers.length >= 3 && event.target.tagName.toLowerCase() === 'img' && !selectedOptions.flowers.includes(event.target.alt)) {
+                bubble.style.display = 'block';
+                bubble.style.left = "75%";
+                bubble.style.top = "48%";
+            } else {
+                bubble.style.display = 'none';
+            }
+        }
+        document.addEventListener('click', showBubble);
+
     </script>
 </body>
 </html>
