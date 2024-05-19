@@ -42,11 +42,12 @@ DROP TABLE {databaseOwner}{objectQualifier}Order
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Flowers') AND type in (N'U'))
 DROP TABLE {databaseOwner}{objectQualifier}Flowers
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Packaging') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}Packaging
+
 CREATE TABLE {databaseOwner}{objectQualifier}Flowers
     (
-        [FlowerID] INT NOT NULL IDENTITY (1, 1)
-                CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED,
-
+       [FlowerID] INT NOT NULL IDENTITY (1, 1),               
        [FlowerName] NVARCHAR(1024),
        [Price] DECIMAL
         
@@ -64,9 +65,7 @@ GO
 
 CREATE TABLE {databaseOwner}{objectQualifier}Order
     (
-        [OrderID] INT NOT NULL IDENTITY (1, 1)
-                CONSTRAINT [PK_Order] PRIMARY KEY CLUSTERED,
-
+        [OrderID] INT NOT NULL IDENTITY (1, 1),
         [PackagingID] INT NOT NULL,
         [FlowerID] INT NOT NULL,
         [PackageColorID] INT NOT NULL,
@@ -85,6 +84,24 @@ ALTER TABLE {databaseOwner}{objectQualifier}Order ADD CONSTRAINT
 
 GO
 
+CREATE TABLE {databaseOwner}{objectQualifier}Packaging
+    (
+        [PackagingID] INT NOT NULL IDENTITY (1, 1),               
+       [PackagingName] NVARCHAR(1024),
+       [Price] DECIMAL
+        
+    )  ON [PRIMARY]
+    
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}Packaging ADD CONSTRAINT
+    PK_{objectQualifier}Packaging PRIMARY KEY CLUSTERED 
+    (
+    PackagingID
+    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
 INSERT INTO [Flowers] (
 	[FlowerName], [Price]
 	) VALUES
@@ -94,6 +111,13 @@ INSERT INTO [Flowers] (
 	('Krizantém', 800),
 	('Török szegfű', 950),
     ('Napraforgó', 1200);
+GO
+
+INSERT INTO [Packaging] (
+    [PackagingName], [Price]
+    ) VALUES
+    ('Csokor', 500),
+    ('Doboz', 800);
 GO
 
 
