@@ -45,6 +45,12 @@ DROP TABLE {databaseOwner}{objectQualifier}Flowers
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Packaging') AND type in (N'U'))
 DROP TABLE {databaseOwner}{objectQualifier}Packaging
 
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}PackageColor') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}PackageColor
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}FlowerColor') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}FlowerColor
+
 CREATE TABLE {databaseOwner}{objectQualifier}Flowers
     (
        [FlowerID] INT NOT NULL IDENTITY (1, 1),               
@@ -102,6 +108,40 @@ ALTER TABLE {databaseOwner}{objectQualifier}Packaging ADD CONSTRAINT
 
 GO
 
+CREATE TABLE {databaseOwner}{objectQualifier}PackageColor
+    (
+       [PackageColorID] INT NOT NULL IDENTITY (1, 1),               
+       [PackageColorName] NVARCHAR(1024),       
+        
+    )  ON [PRIMARY]
+    
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}PackageColor ADD CONSTRAINT
+    PK_{objectQualifier}PackageColor PRIMARY KEY CLUSTERED 
+    (
+    PackageColorID
+    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
+CREATE TABLE {databaseOwner}{objectQualifier}FlowerColor
+    (
+       [FlowerColorID] INT NOT NULL IDENTITY (1, 1),               
+       [FlowerColorName] NVARCHAR(1024)
+        
+    )  ON [PRIMARY]
+    
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}FlowerColor ADD CONSTRAINT
+    PK_{objectQualifier}FlowerColor PRIMARY KEY CLUSTERED 
+    (
+    FlowerColorID
+    ) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO
+
 INSERT INTO [Flowers] (
 	[FlowerName], [Price]
 	) VALUES
@@ -120,7 +160,23 @@ INSERT INTO [Packaging] (
     ('Doboz', 800);
 GO
 
+INSERT INTO [PackageColor] (
+    [PackagingName]
+    ) VALUES
+    ('Átlátszó'),
+    ('Natúr'),
+    ('Virágmintás');
+GO
 
+INSERT INTO [FlowerColor] (
+    [FlowerColorName]
+    ) VALUES
+    ('pasztell'),
+    ('élénk'),
+    ('rózsaszín'),
+    ('fehér-sárga'),
+    ('kék-lila');
+GO
 
 
 

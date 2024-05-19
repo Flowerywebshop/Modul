@@ -7,3 +7,15 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Flowers') AND type in (N'U'))
 DROP TABLE {databaseOwner}{objectQualifier}Flowers
 GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}Packaging') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}Packaging
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}PackageColor') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}PackageColor
+GO
+
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'{databaseOwner}{objectQualifier}FlowerColor') AND type in (N'U'))
+DROP TABLE {databaseOwner}{objectQualifier}FlowerColor
+GO
