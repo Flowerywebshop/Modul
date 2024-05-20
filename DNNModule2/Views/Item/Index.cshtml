@@ -4,6 +4,8 @@
 @using DotNetNuke.Web.Mvc.Helpers
 
 
+<div><hr class="default-line"></div>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +19,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
             padding: 20px;
         }
@@ -48,6 +50,7 @@
                 margin: 10px;
                 cursor: pointer;
                 transition: transform 0.3s ease-in-out;
+                border: 2px solid transparent;
                 border-radius: 8px;
             }
 
@@ -61,7 +64,7 @@
             margin: 40px 0;
         }
 
-        .selected-image {
+        .image-options img.selected-image {
             border: 2px solid #70bb8b;
         }
 
@@ -88,15 +91,16 @@
             font-size: 16px;
         }
 
-        #select-options {
+        .select-options {
             font-size: 16px;
             border-color: transparent;
             padding: 2px 2px 2px 2px;
             text-align: center;
             cursor: pointer;
+            background-color: white;
         }
 
-            #select-options ::selection {
+            .select-options ::selection {
                 background: #70bb8b;
                 color: #fff;
                 text-shadow: none;
@@ -110,27 +114,27 @@
             border: none;
         }
 
-        /* Custom select dropdown styles */
+
         .custom-select {
             display: inline-block;
-            padding: 12px 24px; /* increased padding for bigger size */
+            padding: 12px 24px;
             border: 1px solid #ccc;
-            border-radius: 8px; /* increased border-radius for rounded corners */
+            border-radius: 8px;
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
-            background-color: #fff; /* added background color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .select-selected {
             display: inline-block;
-            padding: 12px 24px; /* increased padding for bigger size */
+            padding: 12px 24px;
             border: 1px solid #ccc;
-            border-radius: 8px; /* increased border-radius for rounded corners */
+            border-radius: 8px;
             cursor: pointer;
             user-select: none;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
-            background-color: #fff; /* added background color */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
         }
 
             .select-selected:hover {
@@ -142,16 +146,16 @@
             background-color: #f9f9f9;
             border: 1px solid #ccc;
             border-top: none;
-            border-radius: 0 0 8px 8px; /* increased border-radius */
+            border-radius: 0 0 8px 8px;
             z-index: 99;
             display: none;
             max-height: 200px;
             overflow-y: auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* added box-shadow */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
             .select-items div {
-                padding: 12px 24px; /* increased padding */
+                padding: 12px 24px;
                 cursor: pointer;
                 user-select: none;
             }
@@ -162,7 +166,7 @@
 
 
         .checkout-button {
-            background-color: #4CAF50; /* Green */
+            background-color: #4CAF50;
             border: none;
             color: white;
             padding: 15px 32px;
@@ -177,21 +181,42 @@
             margin-top: 40px;
         }
 
-            /* Add hover effect */
+
             .checkout-button:hover {
-                background-color: #45a049; /* Darker green */
+                background-color: #45a049;
             }
 
-            /* Add a bit of shadow for depth */
+
             .checkout-button:active {
                 box-shadow: 0 5px #666;
                 transform: translateY(4px);
             }
 
         .disabled-button {
-            background-color: #C8E6C9 !important; /* Lighter green */
+            background-color: #C8E6C9 !important;
             cursor: not-allowed;
         }
+
+
+        #preview {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+            #preview p {
+                display: flex;
+                justify-content: space-between;
+                margin: 0 0 0.5rem 0;
+            }
+
+                #preview p:last-child {
+                    margin-bottom: 0;
+                }
+
+            #preview .p-result {
+                font-weight: bold;
+                color: #294a40;
+            }
     </style>
 </head>
 <body>
@@ -202,28 +227,30 @@
             <div class="text-center optionsHint">
                 <p>Válassza ki a csomagolás típusát!</p>
             </div>
-            <div class="image-options">
+            <div id="packaging-type" class="image-options">
                 <img src="https://d145lal0wx50bl.cloudfront.net/assets/user/bouquet/bouquet-0d9e490ff3c6e0b5b6dab957fc01b077d2ff6c7b8ffe902cb82baac45f0255ba.png" alt="Csokor" onclick="selectOption(this)">
                 <img src="https://d145lal0wx50bl.cloudfront.net/assets/user/bouquet/boxed-9037c39ad1d5f8d0083a4c1952d46814052da068e29e226c0ad62ac76a486a8e.png" alt="Doboz" onclick="selectOption(this)">
             </div>
             <hr class="default-line">
-            <h2>Milyen virágtípusokat szeretne?</h2>
+            <h2 id="virag-arnyalatok">Milyen virágtípusokat szeretne?</h2>
             <p>Válasszon ki legalább egy, legfeljebb három virágfajtát.</p>
-            <div class="image-options">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1614936770/pynroaa4x7wh9ut5ko4g.jpg" alt="Roses" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053450/zdyu9un15t8bobnckk2v.jpg" alt="Oriental Lilies" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053626/edsf6xurhpozxtsnuiht.jpg" alt="Gerberas" onclick="selectOption(this)">
-            </div>
-            <div class="image-options">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615792963/gjumxhthhn0sspx1wqrj.jpg" alt="Chrysanthemums" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053538/pc4uxotigenqthccvcju.jpg" alt="Sweet Williams" onclick="selectOption(this)">
-                <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615793476/jimolwia458vooi05ozv.jpg" alt="Sunflowers" onclick="selectOption(this)">
+            <div id="flower-type">
+                <div class="image-options">
+                    <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1614936770/pynroaa4x7wh9ut5ko4g.jpg" alt="Roses" onclick="selectOption(this)">
+                    <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053450/zdyu9un15t8bobnckk2v.jpg" alt="Oriental Lilies" onclick="selectOption(this)">
+                    <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053626/edsf6xurhpozxtsnuiht.jpg" alt="Gerberas" onclick="selectOption(this)">
+                </div>
+                <div class="image-options">
+                    <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615792963/gjumxhthhn0sspx1wqrj.jpg" alt="Chrysanthemums" onclick="selectOption(this)">
+                    <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1616053538/pc4uxotigenqthccvcju.jpg" alt="Sweet Williams" onclick="selectOption(this)">
+                    <img src="https://res.cloudinary.com/flowers-across-aus/image/upload/c_fill,f_auto,h_200,q_auto,w_200/v1615793476/jimolwia458vooi05ozv.jpg" alt="Sunflowers" onclick="selectOption(this)">
+                </div>
             </div>
             <hr class="default-line">
-            <h2>Válassza ki a csomagolás színét!</h2>
+            <h2 id="csomagolas-szine">Válassza ki a csomagolás színét!</h2>
             <div class="image-options">
                 <div class="custom-select">
-                    <select id="select-options">
+                    <select id="packaging-color" class="select-options">
                         <option value="Átlátszó">Átlátszó</option>
                         <option value="Natúr">Natúr</option>
                         <option value="Virágmintás">Virágmintás</option>
@@ -235,7 +262,7 @@
         <h2>Válassza ki a virágok színárnyalatát!</h2>
         <div class="image-options">
             <div class="custom-select">
-                <select id="select-options">
+                <select id="flower-hues" class="select-options">
                     <option value="pasztell">Kevert pasztell színek</option>
                     <option value="élénk">Kevert élénk színek</option>
                     <option value="rózsaszín">Rózsaszín árnyalat</option>
@@ -245,9 +272,33 @@
                 </select>
             </div>
         </div>
+
+        <hr class="default-line">
+        <h2 id="preview-title">Összeállított csomag</h2>
+        <div id="preview">
+            <p>
+                <span>Csomagolás</span>
+                <span id="p-packaging-type" class="p-result">-</span>
+            </p>
+            <p>
+                <span>Virágtípusok</span>
+                <span id="p-flowers" class="p-result">-</span>
+            </p>
+            <p>
+                <span>Csomagolás színe</span>
+                <span id="p-packaging-color" class="p-result">-</span>
+            </p>
+            <p>
+                <span>Virágok színárnyalata</span>
+                <span id="p-flower-hues" class="p-result">-</span>
+            </p>
+        </div>
     </div>
+
+
+
     <div class="image-options">
-        <button class="checkout-button">Kosár</button>
+        <button id="btn-add-to-cart" class="checkout-button">Kosár</button>
     </div>
 
 
@@ -259,9 +310,21 @@
     <div id="bubble" style="position: absolute; display: none; background-color: #ff6666; color: #fff; padding: 5px 10px; border-radius: 5px;">Legfeljebb 3 virágot választhat!</div>
 
     <script>
+        const selectPackagingColor = document.getElementById('packaging-color');
+        const selectFlowerHues = document.getElementById('flower-hues');
+
+        const previewElements = {
+            packaging: document.getElementById('p-packaging-type'),
+            flowers: document.getElementById('p-flowers'),
+            packagingColor: document.getElementById('p-packaging-color'),
+            flowerHues: document.getElementById('p-flower-hues'),
+        }
+
         var selectedOptions = {
             packaging: null,
-            flowers: []
+            flowers: [],
+            packagingColor: null,
+            flowerHues: null,
         };
 
         function selectOption(option) {
@@ -291,31 +354,66 @@
                     option.classList.remove('selected-image');
                 }
             });
+
+            selectedOptions.packagingColor = selectPackagingColor.options[selectPackagingColor.selectedIndex].value;
+            selectedOptions.flowerHues = selectFlowerHues.options[selectFlowerHues.selectedIndex].value;
+
+            updatePreview();
+        }
+
+        function updatePreview() {
+            previewElements.packaging.innerText = selectedOptions.packaging ?? 'Nincs kiválasztva';
+            previewElements.flowers.innerText = getFlowersPreview();
+            previewElements.packagingColor.innerText = selectedOptions.packagingColor;
+            previewElements.flowerHues.innerText = selectedOptions.flowerHues;
+        }
+
+        function getFlowersPreview() {
+            if (selectedOptions.flowers.length === 0) {
+                return "Nincs kiválasztva";
+            }
+
+            let translated = [];
+            selectedOptions.flowers.forEach(flower => {
+                translated.push(translateFlowerName(flower));
+            });
+
+            return translated.join(', ');
+        }
+
+        function translateFlowerName(name) {
+            switch (name) {
+                case "Roses":
+                    return "Rózsa";
+                case "Oriental Lilies":
+                    return "Liliom";
+                case "Gerberas":
+                    return "Gerbera";
+                case "Chrysanthemums":
+                    return "Krizantém";
+                case "Sweet Williams":
+                    return "Török szegfű";
+                case "Sunflowers":
+                    return "Napraforgó";
+                default:
+                    console.log("Ismeretlen virág név!");
+                    return name;
+            }
         }
 
         $(document).ready(function () {
-
             $('.checkout-button').click(function (e) {
                 e.preventDefault();
 
-
                 $('#custom-alert').fadeIn();
             });
-
-
         });
 
 
         /*$(document).ready(function () {
-
             $('#custom-alert-ok').click(function () {
-
                 var kosarTabId = 35;
-
-
                 var kosarUrl = '<%= DotNetNuke.Common.Globals.NavigateURL(kosarTabId) %>';
-
-
                 window.location.href = kosarUrl;
             });
         });*/
@@ -334,6 +432,48 @@
         }
         document.addEventListener('click', showBubble);
 
+        function bindScrollElements() {
+            const packagingImgs = document.querySelectorAll('#packaging-type img');
+            const flowerTypeImgs = document.querySelectorAll('#flower-type img');
+            const flowerColorsTitle = document.getElementById('virag-arnyalatok');
+            const packagingColorTitle = document.getElementById('csomagolas-szine');
+            const opts = {
+                behavior: "smooth",
+                block: "start"
+            };
+
+            packagingImgs.forEach((el) => {
+                el.addEventListener('click', () => {
+                    console.log(flowerColorsTitle);
+                    flowerColorsTitle.scrollIntoView(opts);
+                });
+            });
+
+            flowerTypeImgs.forEach((el) => {
+                el.addEventListener('click', () => {
+                    if (selectedOptions.flowers.length >= 3) {
+                        packagingColorTitle.scrollIntoView(opts);
+                    }
+                });
+            });
+        }
+
+        function bindInputs() {
+            selectFlowerHues.addEventListener('change', () => {
+                updateSelection();
+            });
+
+            selectPackagingColor.addEventListener('change', () => {
+                updateSelection();
+            });
+        }
+
+        function init() {
+            bindScrollElements();
+            bindInputs();
+        }
+
+        init();
     </script>
 </body>
-</html >
+</html>
